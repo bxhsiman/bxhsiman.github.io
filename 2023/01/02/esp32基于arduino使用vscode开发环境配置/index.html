@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>siman&#39;s blog</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">siman's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">esp32基于arduino使用vscode开发环境配置</h2>
+            <div class="post-meta">
+                <span class="post-time">2023-01-02</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">开始配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="toc-text">工程文件简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-cpp-%E4%BB%8B%E7%BB%8D"><span class="toc-text">main.cpp 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#platformIO-%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="toc-text">platformIO 功能介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E5%AE%89%E8%A3%85%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8%EF%BC%88cp2102%EF%BC%89%E4%B8%8E%E4%B8%B2%E5%8F%A3%E5%B0%8F%E5%8A%A9%E6%89%8B"><span class="toc-text">附：安装串口驱动（cp2102）与串口小助手</span></a>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>esp32的学习笔记</p>
+<span id="more"></span>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>windows11</li>
+<li>vscode+platformIO</li>
+<li>esp32开发板</li>
+</ul>
+<h2 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h2><ol>
+<li>在vsc当中下载PlatformIO插件</li>
+<li>等待安装完毕后 重启 边栏当中点击open进入platformio的主页 </li>
+<li>new project 选择开发板 选择开发框架frame为Arduino</li>
+<li>开始开发</li>
+</ol>
+<h2 id="工程文件简介"><a href="#工程文件简介" class="headerlink" title="工程文件简介"></a>工程文件简介</h2><ol>
+<li>.vscode&#x2F;c_cpp_properties.json 存放c语言配置 额外库需要需要在这里写入以便vscode定位</li>
+<li>lib 放入待引入库的源代码</li>
+<li>src 存放主代码</li>
+<li>include 存放src中代码共享的头文件</li>
+</ol>
+<h2 id="main-cpp-介绍"><a href="#main-cpp-介绍" class="headerlink" title="main.cpp 介绍"></a>main.cpp 介绍</h2><p>这是一个标准的arduino的main.cpp</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span>&#123;&#125; <span class="comment">//初始化函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">()</span>&#123;&#125;  <span class="comment">//主循环</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="platformIO-功能介绍"><a href="#platformIO-功能介绍" class="headerlink" title="platformIO 功能介绍"></a>platformIO 功能介绍</h2><p>下边栏的第一个HOME 第二个√是build 第三个-&gt;是烧写 第四个垃圾桶图标是删除.o文件 第四个是test 第五个🔌是串口监视器 第六个是新终端</p>
+<h2 id="附：安装串口驱动（cp2102）与串口小助手"><a href="#附：安装串口驱动（cp2102）与串口小助手" class="headerlink" title="附：安装串口驱动（cp2102）与串口小助手"></a>附：安装串口驱动（cp2102）与串口小助手</h2><p>懒了 明天逻辑分析仪到了一起写</p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/esp32/" title="esp32">esp32</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2023/01/02/%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%AD%A5%E6%B5%81%E7%A8%8B/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">博客同步流程</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2022/12/21/22_12_21Firtst_try_on_sockte/">
+                <span class="nav-default">tcp udp实践</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+    <a class="social-link" target="_blank" href="https://github.com/bxhsiman">
+        <i class="iconfont icon-github"></i>
+    </a>
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+                2022 -
+            
+            2023
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">siman</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+    var gitment = new Gitment({
+        id: 'esp32基于arduino使用vscode开发环境配置',
+        owner: 'bxhsiman',
+        repo: 'https://github.com/bxhsiman/bxhsiman.github.io',
+        oauth: {
+            client_id: '8033fd1192a442e0f843',
+            client_secret: 'b899a3e4c7a658b8be5809c2226e23a3957246ea'
+        }
+    });
+    gitment.render('comment-container');
+    
+
+</script>
+</html>

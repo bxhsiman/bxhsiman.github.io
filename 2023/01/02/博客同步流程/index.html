@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>siman&#39;s blog</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">siman's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">博客同步流程</h2>
+            <div class="post-meta">
+                <span class="post-time">2023-01-02</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%86%99%E6%9C%AC%E6%96%87%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="toc-text">开发环境与写本文的目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B"><span class="toc-text">日常更新博客流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E8%8A%82%E7%82%B9%E6%B5%81%E7%A8%8B"><span class="toc-text">创建分布节点流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A5%E7%A6%81%E7%9B%B4%E6%8E%A5clone-github-io%E4%BB%93%E5%BA%93%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9C-%E6%9C%89%E4%B8%A2%E5%A4%B1%E5%8F%AF%E8%83%BD"><span class="toc-text">严禁直接clone github.io仓库直接操作 有丢失可能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E9%A1%BBclone-hexo%E7%9A%84-deploy-git%E4%BF%AE%E6%94%B9%E5%90%8Egit-push-deploy-git%E4%B8%8Eblog%E4%B8%A4%E4%B8%AA%E7%9B%AE%E5%BD%95"><span class="toc-text">必须clone hexo的.deploy_git修改后git push .deploy_git与blog两个目录</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <span id="more"></span>
+<h2 id="开发环境与写本文的目的"><a href="#开发环境与写本文的目的" class="headerlink" title="开发环境与写本文的目的"></a>开发环境与写本文的目的</h2><ul>
+<li>使用hexo管理github.io的博客</li>
+<li>创建一个私有仓库 备份hexo的blog文件夹以下的所有内容包括配置</li>
+<li>创建一个公开仓库作为github.io</li>
+</ul>
+<p>实际上在hexo的博客目录下有一个 .deploy_git文件夹 其就是github.io的这个仓库！</p>
+<p> 当运行<code>hexo d</code>时 hexo会不管三七二十一直接把这个目录强制同步到云端，导致云端数据丢失&#x2F;被覆盖 为防止抹除其他节点上传的数据 请遵守以下同步流程</p>
+<h2 id="日常更新博客流程"><a href="#日常更新博客流程" class="headerlink" title="日常更新博客流程"></a>日常更新博客流程</h2><ol start="0">
+<li>进入hexo的博客目录<code>git pull</code>同步数据【同步私有仓库】</li>
+<li><code>cd $blog$</code> 进入博客目录 <code>hexo new &quot;&quot;</code> 创建新博客&#x2F;修改<code>source</code>当中的已有博客</li>
+<li><code>hexo g</code> <code>hexo d</code>生成并分发博客【自动同步公开仓库】</li>
+<li>进入hexo的博客目录<code>git push</code>同步数据【同步私有仓库】</li>
+</ol>
+<h2 id="创建分布节点流程"><a href="#创建分布节点流程" class="headerlink" title="创建分布节点流程"></a>创建分布节点流程</h2><ol start="0">
+<li>安装nodejs npm hexo等等</li>
+<li><code>git clone</code>一份hexo的blog文件夹</li>
+<li>进入blog文件夹 <code>npm install</code>更新依赖 </li>
+<li>此后的还没做过 因为ubuntu20.04lts竟然无法好好地安装npm 过两天等网好了 更新一下wsl再试</li>
+</ol>
+<hr>
+<h2 id="严禁直接clone-github-io仓库直接操作-有丢失可能"><a href="#严禁直接clone-github-io仓库直接操作-有丢失可能" class="headerlink" title="严禁直接clone github.io仓库直接操作 有丢失可能"></a>严禁直接clone github.io仓库直接操作 有丢失可能</h2><h3 id="必须clone-hexo的-deploy-git修改后git-push-deploy-git与blog两个目录"><a href="#必须clone-hexo的-deploy-git修改后git-push-deploy-git与blog两个目录" class="headerlink" title="必须clone hexo的.deploy_git修改后git push .deploy_git与blog两个目录"></a>必须clone hexo的.deploy_git修改后<code>git push</code> .deploy_git与blog两个目录</h3>
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/blog/" title="blog">blog</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/2023/01/02/esp32%E5%9F%BA%E4%BA%8Earduino%E4%BD%BF%E7%94%A8vscode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                <span class="nav-default">esp32基于arduino使用vscode开发环境配置</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+    <a class="social-link" target="_blank" href="https://github.com/bxhsiman">
+        <i class="iconfont icon-github"></i>
+    </a>
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+                2022 -
+            
+            2023
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">siman</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    
+    var gitment = new Gitment({
+        id: '博客同步流程',
+        owner: 'bxhsiman',
+        repo: 'https://github.com/bxhsiman/bxhsiman.github.io',
+        oauth: {
+            client_id: '8033fd1192a442e0f843',
+            client_secret: 'b899a3e4c7a658b8be5809c2226e23a3957246ea'
+        }
+    });
+    gitment.render('comment-container');
+    
+
+</script>
+</html>
