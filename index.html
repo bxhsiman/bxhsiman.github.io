@@ -88,34 +88,13 @@
             </div>
             <div class="post-content">
                 
-                    <span id="more"></span>
-<h2 id="开发环境与写本文的目的"><a href="#开发环境与写本文的目的" class="headerlink" title="开发环境与写本文的目的"></a>开发环境与写本文的目的</h2><ul>
-<li>使用hexo管理github.io的博客</li>
-<li>创建一个私有仓库 备份hexo的blog文件夹以下的所有内容包括配置</li>
-<li>创建一个公开仓库作为github.io</li>
-</ul>
-<p>实际上在hexo的博客目录下有一个 .deploy_git文件夹 其就是github.io的这个仓库！</p>
-<p>当运行<code>hexo g</code>时 hexo会把source的非博客复制到public 生成博客html之后放入public 随后把public内容覆盖到.deploy_git</p>
-<p> 当运行<code>hexo d</code>时 hexo会不管三七二十一直接把这个目录强制同步到云端，导致云端数据丢失&#x2F;被覆盖 为防止抹除其他节点上传的数据 请遵守以下同步流程</p>
-<h2 id="日常更新博客流程"><a href="#日常更新博客流程" class="headerlink" title="日常更新博客流程"></a>日常更新博客流程</h2><ol start="0">
-<li>进入hexo的博客目录<code>git pull</code>同步数据【同步私有仓库】</li>
-<li><code>cd $blog$</code> 进入博客目录 <code>hexo new &quot;&quot;</code> 创建新博客&#x2F;修改<code>source</code>当中的已有博客</li>
-<li><code>hexo g</code> <code>hexo d</code>生成并分发博客【自动同步公开仓库】</li>
-<li>进入hexo的博客目录<code>git push</code>同步数据【同步私有仓库】</li>
-</ol>
-<h2 id="修改网页内容操作"><a href="#修改网页内容操作" class="headerlink" title="修改网页内容操作"></a>修改网页内容操作</h2><ol start="0">
-<li>进入hexo的博客目录<code>git pull</code>同步数据【同步私有仓库】</li>
-<li>在source当中创建文件夹 并且在其中加入需要的内容</li>
-<li><code>hexo g</code> <code>hexo d</code>生成并分发博客【自动同步公开仓库】<br>【若无法使用hexo 则在.deploy_git当中【同步】修改数据 之后进行第三步】</li>
-<li>进入hexo的博客目录<code>git push</code>同步数据【同步私有仓库】</li>
-</ol>
-<h2 id="创建分布节点流程"><a href="#创建分布节点流程" class="headerlink" title="创建分布节点流程"></a>创建分布节点流程</h2><ol start="0">
-<li>安装nodejs npm hexo等等</li>
-<li><code>git clone</code>一份hexo的blog文件夹</li>
-<li>进入blog文件夹 <code>npm install</code>更新依赖 </li>
-<li>此后的还没做过 因为ubuntu20.04lts竟然无法好好地安装npm 过两天等网好了 更新一下wsl再试</li>
-</ol>
-
+                    <p>请遵循这个流程</p>
+                    <div class="read-more">
+                        <a href="/2023/01/02/%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%AD%A5%E6%B5%81%E7%A8%8B/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
                 
             </div>
         </article>
