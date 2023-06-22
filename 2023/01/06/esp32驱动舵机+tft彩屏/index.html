@@ -18,16 +18,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"bxhsiman.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"siman.qiulishe.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="前言esp32的学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="esp32控制舵机+tft彩屏">
-<meta property="og:url" content="http://bxhsiman.github.io/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/index.html">
+<meta property="og:url" content="https://siman.qiulishe.com/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/index.html">
 <meta property="og:site_name" content="siman&#39;s blog">
 <meta property="og:description" content="前言esp32的学习笔记">
 <meta property="og:locale">
-<meta property="og:image" content="http://bxhsiman.github.io/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/1-platformio.png">
+<meta property="og:image" content="https://siman.qiulishe.com/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/1-platformio.png">
 <meta property="og:image" content="https://blog.csdn.net/iracer/article/details/50334041">
 <meta property="og:image" content="https://blog.csdn.net/weixin_51037539/article/details/120453447">
 <meta property="og:image" content="https://blog.csdn.net/flurry_rain/article/details/119521840">
@@ -38,14 +38,14 @@
 <meta property="article:author" content="siman">
 <meta property="article:tag" content="esp32">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://bxhsiman.github.io/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/1-platformio.png">
+<meta name="twitter:image" content="https://siman.qiulishe.com/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/1-platformio.png">
 
 
-<link rel="canonical" href="http://bxhsiman.github.io/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/">
+<link rel="canonical" href="https://siman.qiulishe.com/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"http://bxhsiman.github.io/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/","path":"2023/01/06/esp32驱动舵机+tft彩屏/","title":"esp32控制舵机+tft彩屏"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://siman.qiulishe.com/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/","path":"2023/01/06/esp32驱动舵机+tft彩屏/","title":"esp32控制舵机+tft彩屏"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>esp32控制舵机+tft彩屏 | siman's blog</title>
@@ -133,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -142,7 +142,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://bxhsiman.github.io/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/">
+    <link itemprop="mainEntityOfPage" href="https://siman.qiulishe.com/2023/01/06/esp32%E9%A9%B1%E5%8A%A8%E8%88%B5%E6%9C%BA+tft%E5%BD%A9%E5%B1%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

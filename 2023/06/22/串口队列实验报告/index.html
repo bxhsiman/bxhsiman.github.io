@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"siman.qiulishe.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于在巴普特的单片机公选课的期末作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="串口队列实验报告">
+<meta property="og:url" content="https://siman.qiulishe.com/2023/06/22/%E4%B8%B2%E5%8F%A3%E9%98%9F%E5%88%97%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="siman&#39;s blog">
+<meta property="og:description" content="关于在巴普特的单片机公选课的期末作业">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-06-22T12:29:05.000Z">
+<meta property="article:modified_time" content="2023-06-22T12:30:12.138Z">
+<meta property="article:author" content="siman">
+<meta property="article:tag" content="单片机C语言及其系统设计">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://siman.qiulishe.com/2023/06/22/%E4%B8%B2%E5%8F%A3%E9%98%9F%E5%88%97%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://siman.qiulishe.com/2023/06/22/%E4%B8%B2%E5%8F%A3%E9%98%9F%E5%88%97%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/","path":"2023/06/22/串口队列实验报告/","title":"串口队列实验报告"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>串口队列实验报告 | siman's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">siman's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="nav-number">1.</span> <span class="nav-text">串口实验报告</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">引入：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%9F%E5%88%97%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">为什么是队列：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E9%98%9F%E5%88%97"><span class="nav-number">1.3.</span> <span class="nav-text">如何构建队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">队列的初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%85%A5%E9%98%9F-%E7%94%9F%E4%BA%A7"><span class="nav-number">1.5.</span> <span class="nav-text">如何入队(生产)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%87%BA%E9%98%9F-%E6%B6%88%E8%B4%B9"><span class="nav-number">1.6.</span> <span class="nav-text">如何出队(消费)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">siman</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bxhsian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bxhsian" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:siman@qiulishe.com" title="E-Mail → mailto:siman@qiulishe.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://siman.qiulishe.com/2023/06/22/%E4%B8%B2%E5%8F%A3%E9%98%9F%E5%88%97%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="siman">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="siman's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="串口队列实验报告 | siman's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          串口队列实验报告
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-06-22 20:29:05 / Modified: 20:30:12" itemprop="dateCreated datePublished" datetime="2023-06-22T20:29:05+08:00">2023-06-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>关于在巴普特的单片机公选课的期末作业</p>
+<span id="more"></span>
+<h1 id="串口实验报告"><a href="#串口实验报告" class="headerlink" title="串口实验报告"></a>串口实验报告</h1><h2 id="引入："><a href="#引入：" class="headerlink" title="引入："></a>引入：</h2><p>串口常规的阻塞式IO让单片机性能浪费在长时间的数据等待之中。</p>
+<p>而当引入DMA管理数据收发时，数据如何在DMA中存取成了我们要考虑的主要问题，本文将对一份串口通信的示例代码进行分析，了解其是如何使用一个队列对收发数据进行管理的。</p>
+<h2 id="为什么是队列："><a href="#为什么是队列：" class="headerlink" title="为什么是队列："></a>为什么是队列：</h2><p>队列是一个FIFO(先进先出)的数据结构，非常适合传输数据这种异步的生产者消费者模型。</p>
+<p>任意“生产任务”产生数据后，直接放入队列队尾，主循环中“消费任务”会从队头开始依次将消息发送，从而使产生数据与发送数据任务剥离，让任务粒度变细，充分利用单片机计算时间。</p>
+<p>本文涉及的队列是一个二维数组作为存储结构的循环队列,队满条件是单独存储的，充分使用空间（（。</p>
+<h2 id="如何构建队列"><a href="#如何构建队列" class="headerlink" title="如何构建队列"></a>如何构建队列</h2><p>参考本工程的文件 <code>uart_dma.h</code> 关于DMA的相关定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> 	</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	UART_HandleTypeDef 	* huart ; </span><br><span class="line">	DMA_HandleTypeDef 	* hdma_rx ;</span><br><span class="line">	DMA_HandleTypeDef 	* hdma_tx ;</span><br><span class="line">	</span><br><span class="line">	<span class="type">uint8_t</span> uart_rx_buf[ MAX_UART_BUF_NUM ][ UART_RX_BUF_SIZE + <span class="number">1</span> ] ; <span class="comment">//读取缓冲</span></span><br><span class="line">	<span class="type">uint32_t</span>  rx_buf_size[ MAX_UART_BUF_NUM ] ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  rx_buf_head ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  rx_buf_tail ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  rx_buf_full ;	</span><br><span class="line">	<span class="type">void</span> (* RxCallback)( <span class="type">uint8_t</span> * buf , <span class="type">uint32_t</span> len );   </span><br><span class="line">	</span><br><span class="line">	<span class="type">uint8_t</span> uart_tx_buf[ MAX_UART_BUF_NUM ][ UART_RX_BUF_SIZE + <span class="number">1</span> ] ; <span class="comment">//发送缓冲</span></span><br><span class="line">	<span class="type">uint32_t</span>  tx_buf_size[ MAX_UART_BUF_NUM ] ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  tx_buf_head ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  tx_buf_tail ;</span><br><span class="line">	__IO <span class="type">uint32_t</span>  tx_buf_full ;	</span><br><span class="line">	__IO <span class="type">uint32_t</span>  tx_busy     ;	</span><br><span class="line">	<span class="type">void</span> (* TxCallback)( <span class="type">char</span> * buf , <span class="type">uint32_t</span> len );   </span><br><span class="line">&#125; <span class="type">uart_dma_t</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们不难发现其中定义了两个队列，这里使用<code>发送缓冲</code>队列进行分析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uint8_t uart_tx_buf[ MAX_UART_BUF_NUM ][ UART_RX_BUF_SIZE + 1 ] ;</span><br></pre></td></tr></table></figure>
+<p>这是一个二维数组，但是后面我们还有三维的，为了统一风格，我们用json的风格来描述一下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uart_tx_buf<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;缓冲块1&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="string">&quot;内容1&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;缓冲块2&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="string">&quot;内容2&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;缓冲块3&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="string">&quot;内容3&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    ... </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到缓冲区被分成了 <code>MAX_UART_BUF_NUM</code> 块 每一块的长度为 <code>UART_RX_BUF_SIZE + 1</code> 为什么要+1呢，我认为是要容纳<code>\0</code>。</p>
+<p><em>后面了解到这是古早写法，目前的代码无需这个+1</em></p>
+<h2 id="队列的初始化"><a href="#队列的初始化" class="headerlink" title="队列的初始化"></a>队列的初始化</h2><p>还是先来看代码 <code>uart_dma.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">uart_dma_t</span> g_uart_dma[ MAX_UART_DMA_NUM ] ;                 <span class="comment">//创建dma缓冲区</span></span><br><span class="line"><span class="type">const</span> <span class="type">uart_map_t</span> g_uart_port_map[ MAX_UART_PORT_NUM ] = &#123;   <span class="comment">//创建UART设备表</span></span><br><span class="line">	&#123;<span class="number">1</span>,&amp;huart1,&amp;hdma_usart1_rx,&amp;hdma_usart1_tx, &amp;Uart1_RxDataCallback_ToUSB , <span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125; ,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Uart_DMA_Init</span><span class="params">( <span class="type">const</span> <span class="type">uart_map_t</span> * uart_map)</span>&#123; <span class="comment">// 初始化UART DMA</span></span><br><span class="line">	</span><br><span class="line">	<span class="type">uint32_t</span> i ;</span><br><span class="line">	 </span><br><span class="line">	i = uart_map-&gt;index - <span class="number">1</span> ;                    <span class="comment">//index是从1开始的</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> ( i &gt;= MAX_UART_DMA_NUM ) <span class="keyword">return</span> ;        <span class="comment">//index超出uartr dma最大数量</span></span><br><span class="line">	</span><br><span class="line">	HAL_UART_Init( uart_map-&gt;huart ) ;           <span class="comment">//uart初始化</span></span><br><span class="line">    <span class="comment">/*dma初始化区 将uartmap中配置映射到dma*/</span></span><br><span class="line">	g_uart_dma[ i ].huart       = uart_map-&gt;huart ;</span><br><span class="line">	g_uart_dma[ i ].hdma_rx     = uart_map-&gt;hdma_rx ;	</span><br><span class="line">	g_uart_dma[ i ].rx_buf_head = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].rx_buf_tail = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].rx_buf_full = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].RxCallback = uart_map-&gt;RxCallback ;</span><br><span class="line">	</span><br><span class="line">	g_uart_dma[ i ].hdma_tx     = uart_map-&gt;hdma_tx ;	</span><br><span class="line">	g_uart_dma[ i ].tx_buf_head = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].tx_buf_tail = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].tx_buf_full = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].tx_busy = <span class="number">0</span> ;</span><br><span class="line">	g_uart_dma[ i ].TxCallback = uart_map-&gt;TxCallback ;</span><br><span class="line">	</span><br><span class="line">	__HAL_UART_ENABLE_IT( uart_map-&gt;huart , UART_IT_IDLE);    <span class="comment">//使能IDLE中断</span></span><br><span class="line">	<span class="keyword">if</span> ( uart_map-&gt;hdma_rx != <span class="literal">NULL</span> )                          <span class="comment">//使能DMA接收</span></span><br><span class="line">	&#123;</span><br><span class="line">		HAL_UART_Receive_DMA( ... )</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>                                                     <span class="comment">//使能能中断接收</span></span><br><span class="line">	&#123;</span><br><span class="line">		HAL_UART_Receive_IT(... );</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的<code>Uart_DMA_Init</code>主要操作的是<code>g_uart_dma</code>这个三维数组,将<code>uart_map</code>当中每一个UART设备的配置标准化地映射到DMA的内容当中，后续我们使用只要多重遍历<code>g_uart_dma</code>这个数组就可以对每一个UART设备进行操作了！</p>
+<p>之所以采取这种结构，还是因为遍历的进度可以交给一个变量存储，可以将一次完整的操作均匀散开，模拟异步操作！这样init之后的<code>g_uart_dma</code>大概长这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g_uart_dma<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;设备1&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="attr">&quot;队列头&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;队列尾&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;队列满标志&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;回调&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;0xFF222&quot;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;设备2&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="attr">&quot;队列头&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;队列尾&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;队列满标志&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;回调&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;0xFF8i3&quot;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="如何入队-生产"><a href="#如何入队-生产" class="headerlink" title="如何入队(生产)"></a>如何入队(生产)</h2><p>这段代码参考 <code>uart_dma.c</code> 当中的 <code>UartTxDataDMA</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*UART Tx DMA缓冲区生产函数*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">UartTxDataDMA</span><span class="params">( <span class="type">uint32_t</span> port , <span class="type">uint8_t</span> * buf , <span class="type">uint32_t</span> len )</span> <span class="comment">//</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">uint32_t</span> i ;</span><br><span class="line">    <span class="comment">/*参数合法性检查*/</span></span><br><span class="line">	<span class="keyword">if</span> ( len &gt; UART_TX_BUF_SIZE ) <span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">if</span> ( port &gt; MAX_UART_PORT_NUM || port == <span class="number">0</span> ) <span class="keyword">return</span> ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*索引规范化*/</span></span><br><span class="line">	i = g_uart_port_map[port<span class="number">-1</span>].index ;	</span><br><span class="line">	<span class="keyword">if</span> ( i == <span class="number">0</span> ) <span class="keyword">return</span> ;</span><br><span class="line">	i = i - <span class="number">1</span> ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*DMA 缓冲块写入操作*/</span></span><br><span class="line">	<span class="built_in">memcpy</span>( g_uart_dma[ i ].uart_tx_buf[ g_uart_dma[ i ].tx_buf_tail ] , buf , len ); <span class="comment">//将buffer放入缓冲块队列队尾缓冲块</span></span><br><span class="line">	g_uart_dma[ i ].tx_buf_size[ g_uart_dma[ i ].tx_buf_tail ] =  len ;               <span class="comment">//将该块数据长度记录到表</span></span><br><span class="line">	<span class="comment">/*缓冲块队列操作*/</span></span><br><span class="line">    <span class="keyword">if</span> ( g_uart_dma[ i ].tx_buf_tail == ( MAX_UART_BUF_NUM - <span class="number">1</span> ) )                    <span class="comment">//检查是否到达缓冲区尾 进行循环</span></span><br><span class="line">		g_uart_dma[ i ].tx_buf_tail = <span class="number">0</span> ;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		g_uart_dma[ i ].tx_buf_tail ++ ;                                              <span class="comment">//队尾移动</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> ( g_uart_dma[ i ].tx_buf_tail == g_uart_dma[ i ].tx_buf_head ) </span><br><span class="line">	&#123;</span><br><span class="line">		g_uart_dma[ i ].tx_buf_full = <span class="number">1</span> ;                                            <span class="comment">//如果队尾和队头相等 则说明缓冲队列满了</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>感觉代码可读性还是很高的，一点都不抽象 XD</p>
+<p>大概就是将数据放到指定的DMA的缓冲队列的最后，进行一个入队操作</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">g_uart_dma<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;设备1&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          ...</span><br><span class="line">          <span class="attr">&quot;队列头&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>          </span><br><span class="line">          <span class="attr">&quot;队列尾&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>        &lt;- 把这里后移 然后判断是否需要循环</span><br><span class="line">          <span class="attr">&quot;队列满标志&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>    &lt;- 如果满了 就把这个也标记一下</span><br><span class="line">          <span class="attr">&quot;回调&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;0xFF222&quot;</span></span><br><span class="line">          ...</span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>队尾有三个操作，后移(++)，循环(&#x3D;0)，队满(追上队头 置标志位)<br>但是这样有个问题，如果缓冲区溢出，队尾超过了队头就直接丢失一整个缓冲队列的数据了，可以在<code>memcpy</code>之前进行判满</p>
+<p>这里就涉及了如何设计流控的问题，应当找到最慢的步骤，在其拥塞的时候向其消费者与生产者共同发出流控信号。</p>
+<h2 id="如何出队-消费"><a href="#如何出队-消费" class="headerlink" title="如何出队(消费)"></a>如何出队(消费)</h2><p>这段代码参考 <code>uart_dma.c</code> 当中的 <code>CheckUartTxData</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">CheckUartTxData</span><span class="params">( <span class="type">void</span> )</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//static uint8_t rx_buf[ UART_RX_BUF_SIZE + 1 ] ;</span></span><br><span class="line">    <span class="type">uint8_t</span> * tx_buf ;</span><br><span class="line">    <span class="type">int32_t</span> len ;</span><br><span class="line">    <span class="type">int32_t</span> i ;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">for</span> ( i = <span class="number">0</span> ; i &lt; g_active_uart_num ; i++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// if ( g_uart_dma[ i ].tx_busy == 1 ) continue; //检查发送是否忙</span></span><br><span class="line">		<span class="keyword">if</span> ( g_uart_dma[ i ].tx_buf_full == <span class="number">1</span> )         <span class="comment">//检查Tx缓冲区是否满</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;Uart Tx overflow!\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">/*缓冲块队列出队操作(消费)*/</span></span><br><span class="line">		<span class="keyword">if</span> ( g_uart_dma[ i ].tx_buf_full == <span class="number">1</span> || </span><br><span class="line">				g_uart_dma[ i ].tx_buf_head != g_uart_dma[ i ].tx_buf_tail  ) <span class="comment">//块队列满或块队列不空</span></span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			len = g_uart_dma[ i ].tx_buf_size[ g_uart_dma[ i ].tx_buf_head ] ; <span class="comment">//取出对应块头指针与长度</span></span><br><span class="line">			tx_buf = g_uart_dma[ i ].uart_tx_buf[ g_uart_dma[ i ].tx_buf_head ] ;</span><br><span class="line">			HAL_UART_Transmit_DMA(g_uart_dma[ i ].huart , tx_buf , len );<span class="comment">//发送数据</span></span><br><span class="line">			<span class="comment">//g_uart_dma[ i ].tx_busy = 1 ;</span></span><br><span class="line">			<span class="keyword">if</span> ( g_uart_dma[ i ].tx_buf_head == ( MAX_UART_BUF_NUM - <span class="number">1</span> ) ) <span class="comment">//当头到队列尾部 则从头开始处理</span></span><br><span class="line">				g_uart_dma[ i ].tx_buf_head = <span class="number">0</span> ;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				g_uart_dma[ i ].tx_buf_head ++ ;                           <span class="comment">//开始处理下一个buffer块</span></span><br><span class="line">			g_uart_dma[ i ].tx_buf_full = <span class="number">0</span>;                               <span class="comment">//清除该块满标志</span></span><br><span class="line">		&#125;			</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大概就是每次队头指向的DMA缓冲块的数据交给DMA</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">g_uart_dma<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;设备1&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          ...</span><br><span class="line">          <span class="attr">&quot;队列头&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>         &lt;- 先取当前位置，然后获取位置对应的数据 随后后移 判断是否需要循环  </span><br><span class="line">          <span class="attr">&quot;队列尾&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>       </span><br><span class="line">          <span class="attr">&quot;队列满标志&quot;</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>     &lt;- 操作完了之后清零</span><br><span class="line">          <span class="attr">&quot;回调&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;0xFF222&quot;</span>   &lt;- 可以在合适的时候调用这里的回调处理一些东西</span><br><span class="line">          ...</span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>队头有两个操作，后移(++)，循环(&#x3D;0)</p>
+<p>队空是用头&#x3D;尾且块满标志为0判断的，操作完了之后需要清除块满标志</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本例工程使用循环队列进行数据缓冲实现了USB与UART的数据透传,效果还是不错的，算是将数据结构课程给在单片机上学以致用了吧~</p>
+<p>单片机编程总是在想办法模拟异步，将一个任务尽量的拆细，以防止阻塞掉一些无法抢断别人的中断。也会想着使用一些其他芯片&#x2F;电路去简化一些复杂耗时的操作。</p>
+<p>在本次场景当中没有设计流控，大量数据从USB发往串口时会出现丢包，可以设计乒乓结构来中止&#x2F;启动接收，而对于流控的触发，要在缓冲区满后立刻向生产消费者均发出流控信号，避免数据的丢失。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BAC%E8%AF%AD%E8%A8%80%E5%8F%8A%E5%85%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag"># 单片机C语言及其系统设计</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/08/%E6%AD%8C%E5%8D%8Edvbip1001%E5%88%B7%E6%9C%BA/" rel="prev" title="歌华dvbip-1001刷机">
+                  <i class="fa fa-chevron-left"></i> 歌华dvbip-1001刷机
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">siman</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"bxhsiman","repo":"bxhsiman.github.io","client_id":"b75d8d46a9f7b64faa85","client_secret":"1e7eeab75f3bcd8f6322d07dd5c69a2e9e95124f","admin_user":"bxhsiman","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"080b894a29fa13d4697ea4ec032eaa9f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
