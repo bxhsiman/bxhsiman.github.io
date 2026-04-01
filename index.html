@@ -182,7 +182,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">nordic芯片开发环境配置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -194,7 +194,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-04-02 01:46:02 / Modified: 01:46:58" itemprop="dateCreated datePublished" datetime="2026-04-02T01:46:02+08:00">2026-04-02</time>
+      <time title="Created: 2026-04-02 01:55:45 / Modified: 02:02:26" itemprop="dateCreated datePublished" datetime="2026-04-02T01:55:45+08:00">2026-04-02</time>
     </span>
 
   
@@ -207,83 +207,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="开发环境配置说明"><a href="#开发环境配置说明" class="headerlink" title="开发环境配置说明"></a>开发环境配置说明</h1><p>本项目的开发基于</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SDK:               nRF Connect SDK v3.2.0</span><br><span class="line">Toolchain:         nRF Connect SDK Toolchain v3.2.0</span><br></pre></td></tr></table></figure>
-<p>使用Zephyr作为操作系统，west为主要管理工具。</p>
-<h2 id="Vscode环境安装方式（建议）"><a href="#Vscode环境安装方式（建议）" class="headerlink" title="Vscode环境安装方式（建议）"></a>Vscode环境安装方式（建议）</h2><ol>
-<li><p>安装nrfconnect扩展<br> <img src="/image-1.png" alt="nrfconnect 搜索截图"></p>
-</li>
-<li><p>扩展安装完成后，需要重启vscode，随后打开扩展进行配置<br> <img src="/image-2.png" alt="nrfconnect 配置截图"></p>
-<ol>
-<li>安装sdk 选择 中国大陆 选择 nrf Connect SDK 安装全部的sdk（较大）随后选择 3.2.0版本 建议在默认位置进行安装</li>
-<li>安装toolchain 选择3.2.0版本 【此过程耗时较长 需要30分钟以上】</li>
-</ol>
-</li>
-<li><p>等待SDK和工具链安装完毕后即可进行如下测试，如通过，则环境安装完成</p>
-</li>
-</ol>
-<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><h3 id="关于编译"><a href="#关于编译" class="headerlink" title="关于编译"></a>关于编译</h3><p>对于一个zephyr的工程，首先要理解的是所有的代码和硬件bsp其实是完全解耦合的，只是在编译的过程中，west工具帮助拉取了对应的板子的dts和dtsi文件，获取了板子的CPU flash 引脚 外设等等信息后综合编译出结果。因此，我们在开发的时候首先要明确使用的板子型号是什么，west才可以根据板名进行工程的编译。</p>
-<p>首先，我们需要加载带west的环境，请在nrf connect插件当中开启带有工具链环境变量的终端。<br><img src="/image-4.png" alt="alt text"></p>
-<h4 id="对于已经内置在工具链当中的板子"><a href="#对于已经内置在工具链当中的板子" class="headerlink" title="对于已经内置在工具链当中的板子"></a>对于已经内置在工具链当中的板子</h4><p>zephyr社区非常强大，很多已有的开发板已经有了经过考验的官方&#x2F;社区版dts&#x2F;dtsi，因此，我们应尽量使用兼容板子减少bug的出现。编译指令示例<code>west build -b xiao_ble/nrf52840/sense</code>，在这个示例中，我们使用的是xiao_ble的52840 sense变体，具体的名称请自行探索（ai&#x2F;开发板官方应该有很详细的说明了）</p>
-<h4 id="对于自己的新板子"><a href="#对于自己的新板子" class="headerlink" title="对于自己的新板子"></a>对于自己的新板子</h4><p>我的开发习惯是在本仓库开一个名为boards的文件夹，在内部配置当前工程需要的新板子，并将这个boards目录作为submodule插入主工程的仓库当中方便进行版本管理。</p>
-<p><img src="/image-3.png" alt="boards文件夹示例"></p>
-<p>因此，为了让west能找到我们的板子，编译的指令示例为<code>west build -b pencilrecv -- -DBOARD_ROOT=$PWD</code></p>
-<h3 id="关于烧录和调试"><a href="#关于烧录和调试" class="headerlink" title="关于烧录和调试"></a>关于烧录和调试</h3><p>入门阶段，我们先只讨论烧录的事情。</p>
-<h4 id="uf2"><a href="#uf2" class="headerlink" title="uf2"></a>uf2</h4><p>UF2（USB Flashing Format）是一种把固件封装成“可拖拽拷贝到U盘”的升级方式：设备在 UF2 Bootloader 模式下会枚举成一个 USB Mass Storage（看起来像U盘），你把 *.uf2 文件复制进去，Bootloader 会在后台把数据写入 MCU 的 Flash，然后自动重启运行新固件。</p>
-<p>编译出来的uf2文件一般在<code>build/nrf52-TouchPencil/zephyr/zephyr.uf2</code></p>
-<p>xiao_nrf52840设备进入uf2的方式是双击rst按钮</p>
-<h4 id="jlink"><a href="#jlink" class="headerlink" title="jlink"></a>jlink</h4><p>我们自制的板子大多是这样的</p>
-<p>J-Link 是 SEGGER 出的硬件调试器&#x2F;下载器（debug probe），通过 SWD（ARM 常用）或 JTAG 连到 MCU，把电脑上的固件写进芯片 Flash，同时也能做单步调试、断点、读写寄存器&#x2F;内存、RTT 日志等。</p>
-<p>硬件最少要接</p>
-<ul>
-<li>SWDIO、SWCLK、GND、VTref（目标电压参考）</li>
-</ul>
-<p>烧录指令是 <code>west flash -r jlink</code></p>
-<h2 id="简单的基于zephyr的工程结构说明"><a href="#简单的基于zephyr的工程结构说明" class="headerlink" title="简单的基于zephyr的工程结构说明"></a>简单的基于zephyr的工程结构说明</h2><p>Zephyr 的工程一般分为两块：<strong>应用(app)</strong> + **板级&#x2F;硬件描述(board)**。</p>
-<h3 id="1-prj-conf：Kconfig-配置入口（“开关”和参数）"><a href="#1-prj-conf：Kconfig-配置入口（“开关”和参数）" class="headerlink" title="1) prj.conf：Kconfig 配置入口（“开关”和参数）"></a>1) <code>prj.conf</code>：Kconfig 配置入口（“开关”和参数）</h3><p>路径：<code>./prj.conf</code></p>
-<p>它是 Zephyr 应用最常见的配置文件，用来设置 <strong>Kconfig</strong> 选项，决定“编译进哪些子系统&#x2F;驱动&#x2F;功能”以及它们的参数。</p>
-<p>本仓库的 <code>prj.conf</code> 里主要做了这几类事情：</p>
-<ul>
-<li>日志与控制台：启用 <code>CONFIG_LOG</code>，并把后端切到 RTT（<code>CONFIG_LOG_BACKEND_RTT</code> &#x2F; <code>CONFIG_USE_SEGGER_RTT</code>），同时关闭 UART console（<code>CONFIG_UART_CONSOLE=n</code>）</li>
-<li>蓝牙：启用 BLE 外设、LLPM 相关配置（例如 <code>CONFIG_BT_CTLR_SDC_LLPM=y</code>）</li>
-<li>传感器与外设：启用 <code>CONFIG_SENSOR</code>、<code>CONFIG_I2C</code>、<code>CONFIG_SPI</code>、<code>CONFIG_ADC</code>、以及 IMU 驱动（例如 <code>CONFIG_LSM6DSL=y</code>）</li>
-<li>RAM&#x2F;栈大小：针对 nRF52832 64KB RAM 做了栈大小优化（<code>CONFIG_MAIN_STACK_SIZE</code> 等）</li>
-</ul>
-<p>简单理解：**<code>prj.conf</code> 决定“软件能力”**，例如有没有 BLE、有没有 ADC、日志走 RTT 还是 UART。</p>
-<h3 id="2-app-overlay：应用级-Devicetree-Overlay（“通用硬件连线-节点增改”）"><a href="#2-app-overlay：应用级-Devicetree-Overlay（“通用硬件连线-节点增改”）" class="headerlink" title="2) app.overlay：应用级 Devicetree Overlay（“通用硬件连线&#x2F;节点增改”）"></a>2) <code>app.overlay</code>：应用级 Devicetree Overlay（“通用硬件连线&#x2F;节点增改”）</h3><p>路径：<code>./app.overlay</code></p>
-<p>Devicetree（设备树）描述“板子上有什么硬件、用哪些引脚、设备地址是多少、有哪些别名(chosen&#x2F;aliases)”等。<br><code>app.overlay</code> 是对最终设备树的“补丁”，用于：</p>
-<ul>
-<li>增加&#x2F;修改节点（例如按钮 <code>gpio-keys</code>、ADC channel、I2C 上的 IMU 节点等）</li>
-<li>启用&#x2F;禁用外设节点（例如把某些外设 <code>status = &quot;okay&quot;/&quot;disabled&quot;</code>）</li>
-<li>增加 pinctrl 片段（例如 <code>&amp;pinctrl</code> 下的 <code>i2c0_default</code> &#x2F; <code>spi1_default</code>）</li>
-</ul>
-<p>一个典型的 <code>app.overlay</code> 里能看到内容：</p>
-<ul>
-<li><code>/ &#123; switches &#123; compatible = &quot;gpio-keys&quot;; ... &#125; &#125;</code>：定义按键</li>
-<li><code>&amp;adc &#123; channel@0 ...; channel@1 ... &#125;</code>：定义 SAADC 两个通道（压力&#x2F;电池）</li>
-<li><code>&amp;i2c0 &#123; ... lsm6ds3tr-c@6a &#123; ... &#125; &#125;</code>：在 I2C0 上挂载 IMU（地址 0x6a）</li>
-<li><code>&amp;uicr &#123; nfct-pins-as-gpios; &#125;</code>：把 NFC 引脚释放成 GPIO</li>
-</ul>
-<p>它通常用于“跨多个板子共用的硬件描述”或“快速试验连线&#x2F;外设开关”。</p>
-<blockquote>
-<p>你可以在构建目录的 <code>CMakeCache.txt</code> 里看到它被设置到 <code>DTC_OVERLAY_FILE</code>（本仓库的 build 产物里记录为 <code>.../app.overlay</code>）。</p>
-</blockquote>
-<h3 id="3-board-dts（实际是-dts）：板级-Devicetree-主文件（“这块PCB到底长什么样”）"><a href="#3-board-dts（实际是-dts）：板级-Devicetree-主文件（“这块PCB到底长什么样”）" class="headerlink" title="3) board.dts（实际是 &lt;board&gt;.dts）：板级 Devicetree 主文件（“这块PCB到底长什么样”）"></a>3) <code>board.dts</code>（实际是 <code>&lt;board&gt;.dts</code>）：板级 Devicetree 主文件（“这块PCB到底长什么样”）</h3><p>在 Zephyr 里，板级设备树通常是 <code>boards/&lt;board&gt;/&lt;board&gt;.dts</code>，并不会叫做字面上的 <code>board.dts</code>。</p>
-<p>它的特点是：</p>
-<ul>
-<li><code>#include &lt;nordic/nrf52832_qfaa.dtsi&gt;</code>：先引入 SoC 的基础硬件描述（CPU、外设基址等）</li>
-<li><code>chosen &#123; ... &#125;</code>：指定 Zephyr 运行时“选用”的设备（console&#x2F;shell-uart&#x2F;flash&#x2F;code-partition 等）</li>
-<li><code>aliases &#123; ... &#125;</code>：给应用提供稳定名字（例如 <code>led-red</code>&#x2F;<code>led-green</code>&#x2F;<code>led-blue</code>），让代码不必写死节点路径</li>
-<li>外设&#x2F;引脚&#x2F;分区：例如 <code>&amp;uart0</code> 波特率、<code>&amp;i2c0</code>、<code>&amp;flash0 &#123; partitions &#123; ... &#125; &#125;</code>（MCUboot&#x2F;slot0&#x2F;slot1 等固定分区）</li>
-</ul>
-<p>简单理解：**<code>&lt;board&gt;.dts</code> 是“硬件基线”**，描述这块板子从 SoC 到引脚、外设、分区的完整信息。</p>
-<h3 id="4-board-dtsi（实际是各种-dtsi）：可复用的设备树片段（常见用途：pinctrl）"><a href="#4-board-dtsi（实际是各种-dtsi）：可复用的设备树片段（常见用途：pinctrl）" class="headerlink" title="4) board.dtsi（实际是各种 *.dtsi）：可复用的设备树片段（常见用途：pinctrl）"></a>4) <code>board.dtsi</code>（实际是各种 <code>*.dtsi</code>）：可复用的设备树片段（常见用途：pinctrl）</h3><p><code>.dtsi</code> 通常是“被 include 的片段”，用来拆分板级设备树，避免一个 <code>.dts</code> 文件过大，也方便多个板子复用。</p>
-<p>这些文件主要在 <code>&amp;pinctrl &#123; ... &#125;</code> 下定义 <code>psels</code>，把外设功能映射到具体引脚（例如 UART0 TX&#x2F;RX、I2C0 SDA&#x2F;SCL、SPI1 SCK&#x2F;MOSI 等），然后在 <code>.dts</code> 里通过：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pinctrl<span class="number">-0</span> = <span class="params">&lt;<span class="variable">&amp;i2c0_default</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">pinctrl<span class="number">-1</span> = <span class="params">&lt;<span class="variable">&amp;i2c0_sleep</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line"><span class="attr">pinctrl-names</span> <span class="operator">=</span> <span class="string">&quot;default&quot;</span>, <span class="string">&quot;sleep&quot;</span><span class="punctuation">;</span></span><br></pre></td></tr></table></figure>
-
-<p>来选择运行态&#x2F;低功耗态的引脚配置。</p>
-<h3 id="5-（补充）-overlay：板级-Overlay（“只对某个板子做微调”）"><a href="#5-（补充）-overlay：板级-Overlay（“只对某个板子做微调”）" class="headerlink" title="5) （补充）&lt;board&gt;.overlay：板级 Overlay（“只对某个板子做微调”）"></a>5) （补充）<code>&lt;board&gt;.overlay</code>：板级 Overlay（“只对某个板子做微调”）</h3><p>有时“同一个应用”要跑在不同板子上，但某些节点需要按板子差异做改动，就会用板级 overlay。</p>
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>nordic环境配置</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -496,7 +428,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-04 23:11:04" itemprop="dateModified" datetime="2026-03-04T23:11:04+08:00">2026-03-04</time>
+      <time title="Modified: 2026-04-02 02:03:48" itemprop="dateModified" datetime="2026-04-02T02:03:48+08:00">2026-04-02</time>
     </span>
 
   
@@ -579,7 +511,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-04 23:11:04" itemprop="dateModified" datetime="2026-03-04T23:11:04+08:00">2026-03-04</time>
+      <time title="Modified: 2026-04-02 02:03:36" itemprop="dateModified" datetime="2026-04-02T02:03:36+08:00">2026-04-02</time>
     </span>
 
   
@@ -592,7 +524,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>我去 这个我肯定写了 去哪里了呢… （来自2026年的yg）</p>
+
       
     </div>
 

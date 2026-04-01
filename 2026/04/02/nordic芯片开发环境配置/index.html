@@ -20,31 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"siman.qiulishe.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="开发环境配置说明本项目的开发基于 12SDK:               nRF Connect SDK v3.2.0Toolchain:         nRF Connect SDK Toolchain v3.2.0 使用Zephyr作为操作系统，west为主要管理工具。 Vscode环境安装方式（建议） 安装nrfconnect扩展   扩展安装完成后，需要重启vscode，随后打开扩展进">
+    <meta name="description" content="前言nordic环境配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="siman&#39;s blog">
+<meta property="og:title" content="nordic芯片开发环境配置">
 <meta property="og:url" content="https://siman.qiulishe.com/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="siman&#39;s blog">
-<meta property="og:description" content="开发环境配置说明本项目的开发基于 12SDK:               nRF Connect SDK v3.2.0Toolchain:         nRF Connect SDK Toolchain v3.2.0 使用Zephyr作为操作系统，west为主要管理工具。 Vscode环境安装方式（建议） 安装nrfconnect扩展   扩展安装完成后，需要重启vscode，随后打开扩展进">
+<meta property="og:description" content="前言nordic环境配置">
 <meta property="og:locale">
-<meta property="og:image" content="https://siman.qiulishe.com/image-1.png">
-<meta property="og:image" content="https://siman.qiulishe.com/image-2.png">
-<meta property="og:image" content="https://siman.qiulishe.com/image-4.png">
-<meta property="og:image" content="https://siman.qiulishe.com/image-3.png">
-<meta property="article:published_time" content="2026-04-01T17:46:02.983Z">
-<meta property="article:modified_time" content="2026-04-01T17:46:58.341Z">
+<meta property="og:image" content="https://siman.qiulishe.com/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-1.png">
+<meta property="og:image" content="https://siman.qiulishe.com/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-2.png">
+<meta property="og:image" content="https://siman.qiulishe.com/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-4.png">
+<meta property="og:image" content="https://siman.qiulishe.com/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-3.png">
+<meta property="article:published_time" content="2026-04-01T17:55:45.000Z">
+<meta property="article:modified_time" content="2026-04-01T18:02:26.153Z">
 <meta property="article:author" content="siman">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://siman.qiulishe.com/image-1.png">
+<meta name="twitter:image" content="https://siman.qiulishe.com/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-1.png">
 
 
 <link rel="canonical" href="https://siman.qiulishe.com/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://siman.qiulishe.com/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/","path":"2026/04/02/nordic芯片开发环境配置/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://siman.qiulishe.com/2026/04/02/nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/","path":"2026/04/02/nordic芯片开发环境配置/","title":"nordic芯片开发环境配置"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | siman's blog</title>
+<title>nordic芯片开发环境配置 | siman's blog</title>
   
 
 
@@ -126,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">开发环境配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vscode%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%EF%BC%88%E5%BB%BA%E8%AE%AE%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Vscode环境安装方式（建议）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%BC%96%E8%AF%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">关于编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%B7%B2%E7%BB%8F%E5%86%85%E7%BD%AE%E5%9C%A8%E5%B7%A5%E5%85%B7%E9%93%BE%E5%BD%93%E4%B8%AD%E7%9A%84%E6%9D%BF%E5%AD%90"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">对于已经内置在工具链当中的板子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B0%E6%9D%BF%E5%AD%90"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">对于自己的新板子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%83%A7%E5%BD%95%E5%92%8C%E8%B0%83%E8%AF%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">关于烧录和调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#uf2"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">uf2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jlink"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">jlink</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%BA%E4%BA%8Ezephyr%E7%9A%84%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">简单的基于zephyr的工程结构说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-prj-conf%EF%BC%9AKconfig-%E9%85%8D%E7%BD%AE%E5%85%A5%E5%8F%A3%EF%BC%88%E2%80%9C%E5%BC%80%E5%85%B3%E2%80%9D%E5%92%8C%E5%8F%82%E6%95%B0%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">1) prj.conf：Kconfig 配置入口（“开关”和参数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-app-overlay%EF%BC%9A%E5%BA%94%E7%94%A8%E7%BA%A7-Devicetree-Overlay%EF%BC%88%E2%80%9C%E9%80%9A%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BF%9E%E7%BA%BF-%E8%8A%82%E7%82%B9%E5%A2%9E%E6%94%B9%E2%80%9D%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">2) app.overlay：应用级 Devicetree Overlay（“通用硬件连线&#x2F;节点增改”）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-board-dts%EF%BC%88%E5%AE%9E%E9%99%85%E6%98%AF-dts%EF%BC%89%EF%BC%9A%E6%9D%BF%E7%BA%A7-Devicetree-%E4%B8%BB%E6%96%87%E4%BB%B6%EF%BC%88%E2%80%9C%E8%BF%99%E5%9D%97PCB%E5%88%B0%E5%BA%95%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%E2%80%9D%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">3) board.dts（实际是 &lt;board&gt;.dts）：板级 Devicetree 主文件（“这块PCB到底长什么样”）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-board-dtsi%EF%BC%88%E5%AE%9E%E9%99%85%E6%98%AF%E5%90%84%E7%A7%8D-dtsi%EF%BC%89%EF%BC%9A%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E8%AE%BE%E5%A4%87%E6%A0%91%E7%89%87%E6%AE%B5%EF%BC%88%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94%EF%BC%9Apinctrl%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">4) board.dtsi（实际是各种 *.dtsi）：可复用的设备树片段（常见用途：pinctrl）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89-overlay%EF%BC%9A%E6%9D%BF%E7%BA%A7-Overlay%EF%BC%88%E2%80%9C%E5%8F%AA%E5%AF%B9%E6%9F%90%E4%B8%AA%E6%9D%BF%E5%AD%90%E5%81%9A%E5%BE%AE%E8%B0%83%E2%80%9D%EF%BC%89"><span class="nav-number">1.3.5.</span> <span class="nav-text">5) （补充）&lt;board&gt;.overlay：板级 Overlay（“只对某个板子做微调”）</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number"></span> <span class="nav-text">开发环境配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vscode%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%EF%BC%88%E5%BB%BA%E8%AE%AE%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">Vscode环境安装方式（建议）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="nav-number"></span> <span class="nav-text">开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%BC%96%E8%AF%91"><span class="nav-number">1.</span> <span class="nav-text">关于编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%B7%B2%E7%BB%8F%E5%86%85%E7%BD%AE%E5%9C%A8%E5%B7%A5%E5%85%B7%E9%93%BE%E5%BD%93%E4%B8%AD%E7%9A%84%E6%9D%BF%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">对于已经内置在工具链当中的板子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B0%E6%9D%BF%E5%AD%90"><span class="nav-number">1.2.</span> <span class="nav-text">对于自己的新板子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%83%A7%E5%BD%95%E5%92%8C%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">关于烧录和调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#uf2"><span class="nav-number">2.1.</span> <span class="nav-text">uf2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jlink"><span class="nav-number">2.2.</span> <span class="nav-text">jlink</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%BA%E4%BA%8Ezephyr%E7%9A%84%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="nav-number"></span> <span class="nav-text">简单的基于zephyr的工程结构说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-prj-conf%EF%BC%9AKconfig-%E9%85%8D%E7%BD%AE%E5%85%A5%E5%8F%A3%EF%BC%88%E2%80%9C%E5%BC%80%E5%85%B3%E2%80%9D%E5%92%8C%E5%8F%82%E6%95%B0%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1) prj.conf：Kconfig 配置入口（“开关”和参数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-app-overlay%EF%BC%9A%E5%BA%94%E7%94%A8%E7%BA%A7-Devicetree-Overlay%EF%BC%88%E2%80%9C%E9%80%9A%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%BF%9E%E7%BA%BF-%E8%8A%82%E7%82%B9%E5%A2%9E%E6%94%B9%E2%80%9D%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2) app.overlay：应用级 Devicetree Overlay（“通用硬件连线&#x2F;节点增改”）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-board-dts%EF%BC%88%E5%AE%9E%E9%99%85%E6%98%AF-dts%EF%BC%89%EF%BC%9A%E6%9D%BF%E7%BA%A7-Devicetree-%E4%B8%BB%E6%96%87%E4%BB%B6%EF%BC%88%E2%80%9C%E8%BF%99%E5%9D%97PCB%E5%88%B0%E5%BA%95%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%E2%80%9D%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3) board.dts（实际是 &lt;board&gt;.dts）：板级 Devicetree 主文件（“这块PCB到底长什么样”）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-board-dtsi%EF%BC%88%E5%AE%9E%E9%99%85%E6%98%AF%E5%90%84%E7%A7%8D-dtsi%EF%BC%89%EF%BC%9A%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E8%AE%BE%E5%A4%87%E6%A0%91%E7%89%87%E6%AE%B5%EF%BC%88%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94%EF%BC%9Apinctrl%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4) board.dtsi（实际是各种 *.dtsi）：可复用的设备树片段（常见用途：pinctrl）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89-overlay%EF%BC%9A%E6%9D%BF%E7%BA%A7-Overlay%EF%BC%88%E2%80%9C%E5%8F%AA%E5%AF%B9%E6%9F%90%E4%B8%AA%E6%9D%BF%E5%AD%90%E5%81%9A%E5%BE%AE%E8%B0%83%E2%80%9D%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">5) （补充）&lt;board&gt;.overlay：板级 Overlay（“只对某个板子做微调”）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -188,12 +188,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | siman's blog">
+      <meta itemprop="name" content="nordic芯片开发环境配置 | siman's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          nordic芯片开发环境配置
         </h1>
 
         <div class="post-meta-container">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-04-02 01:46:02 / Modified: 01:46:58" itemprop="dateCreated datePublished" datetime="2026-04-02T01:46:02+08:00">2026-04-02</time>
+      <time title="Created: 2026-04-02 01:55:45 / Modified: 02:02:26" itemprop="dateCreated datePublished" datetime="2026-04-02T01:55:45+08:00">2026-04-02</time>
     </span>
 
   
@@ -217,13 +217,15 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="开发环境配置说明"><a href="#开发环境配置说明" class="headerlink" title="开发环境配置说明"></a>开发环境配置说明</h1><p>本项目的开发基于</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>nordic环境配置</p>
+<span id="more"></span>
+<h1 id="开发环境配置说明"><a href="#开发环境配置说明" class="headerlink" title="开发环境配置说明"></a>开发环境配置说明</h1><p>本项目的开发基于</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SDK:               nRF Connect SDK v3.2.0</span><br><span class="line">Toolchain:         nRF Connect SDK Toolchain v3.2.0</span><br></pre></td></tr></table></figure>
 <p>使用Zephyr作为操作系统，west为主要管理工具。</p>
 <h2 id="Vscode环境安装方式（建议）"><a href="#Vscode环境安装方式（建议）" class="headerlink" title="Vscode环境安装方式（建议）"></a>Vscode环境安装方式（建议）</h2><ol>
-<li><p>安装nrfconnect扩展<br> <img src="/image-1.png" alt="nrfconnect 搜索截图"></p>
+<li><p>安装nrfconnect扩展<br> <img src="/./nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-1.png" alt="nrfconnect 搜索截图"></p>
 </li>
-<li><p>扩展安装完成后，需要重启vscode，随后打开扩展进行配置<br> <img src="/image-2.png" alt="nrfconnect 配置截图"></p>
+<li><p>扩展安装完成后，需要重启vscode，随后打开扩展进行配置<br> <img src="/./nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-2.png" alt="nrfconnect 配置截图"></p>
 <ol>
 <li>安装sdk 选择 中国大陆 选择 nrf Connect SDK 安装全部的sdk（较大）随后选择 3.2.0版本 建议在默认位置进行安装</li>
 <li>安装toolchain 选择3.2.0版本 【此过程耗时较长 需要30分钟以上】</li>
@@ -233,10 +235,10 @@
 </li>
 </ol>
 <h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><h3 id="关于编译"><a href="#关于编译" class="headerlink" title="关于编译"></a>关于编译</h3><p>对于一个zephyr的工程，首先要理解的是所有的代码和硬件bsp其实是完全解耦合的，只是在编译的过程中，west工具帮助拉取了对应的板子的dts和dtsi文件，获取了板子的CPU flash 引脚 外设等等信息后综合编译出结果。因此，我们在开发的时候首先要明确使用的板子型号是什么，west才可以根据板名进行工程的编译。</p>
-<p>首先，我们需要加载带west的环境，请在nrf connect插件当中开启带有工具链环境变量的终端。<br><img src="/image-4.png" alt="alt text"></p>
+<p>首先，我们需要加载带west的环境，请在nrf connect插件当中开启带有工具链环境变量的终端。<br><img src="/./nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-4.png" alt="alt text"></p>
 <h4 id="对于已经内置在工具链当中的板子"><a href="#对于已经内置在工具链当中的板子" class="headerlink" title="对于已经内置在工具链当中的板子"></a>对于已经内置在工具链当中的板子</h4><p>zephyr社区非常强大，很多已有的开发板已经有了经过考验的官方&#x2F;社区版dts&#x2F;dtsi，因此，我们应尽量使用兼容板子减少bug的出现。编译指令示例<code>west build -b xiao_ble/nrf52840/sense</code>，在这个示例中，我们使用的是xiao_ble的52840 sense变体，具体的名称请自行探索（ai&#x2F;开发板官方应该有很详细的说明了）</p>
 <h4 id="对于自己的新板子"><a href="#对于自己的新板子" class="headerlink" title="对于自己的新板子"></a>对于自己的新板子</h4><p>我的开发习惯是在本仓库开一个名为boards的文件夹，在内部配置当前工程需要的新板子，并将这个boards目录作为submodule插入主工程的仓库当中方便进行版本管理。</p>
-<p><img src="/image-3.png" alt="boards文件夹示例"></p>
+<p><img src="/./nordic%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-3.png" alt="boards文件夹示例"></p>
 <p>因此，为了让west能找到我们的板子，编译的指令示例为<code>west build -b pencilrecv -- -DBOARD_ROOT=$PWD</code></p>
 <h3 id="关于烧录和调试"><a href="#关于烧录和调试" class="headerlink" title="关于烧录和调试"></a>关于烧录和调试</h3><p>入门阶段，我们先只讨论烧录的事情。</p>
 <h4 id="uf2"><a href="#uf2" class="headerlink" title="uf2"></a>uf2</h4><p>UF2（USB Flashing Format）是一种把固件封装成“可拖拽拷贝到U盘”的升级方式：设备在 UF2 Bootloader 模式下会枚举成一个 USB Mass Storage（看起来像U盘），你把 *.uf2 文件复制进去，Bootloader 会在后台把数据写入 MCU 的 Flash，然后自动重启运行新固件。</p>
